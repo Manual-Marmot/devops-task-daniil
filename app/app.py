@@ -3,7 +3,7 @@ import time
 import psycopg2
 from flask import Flask, jsonify
 
-app = Flask(name)
+app = Flask(__name__)
 
 DB_HOST = os.getenv("DATABASE_HOST", "db")
 DB_NAME = os.getenv("POSTGRES_DB", "app_db")
@@ -47,5 +47,5 @@ def data():
     except Exception as e:
         return jsonify({"status": "error", "error": str(e)}), 500
 
-if name == "main":
+if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
